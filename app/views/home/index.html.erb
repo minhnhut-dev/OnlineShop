@@ -1,6 +1,8 @@
 <main>
   <div class="container">
-    <nav class="navbar navbar-expand-lg mdb-color navbar-dark lighten-3 mt-3 mb-5">
+    <nav
+      class="navbar navbar-expand-lg mdb-color navbar-dark lighten-3 mt-3 mb-5"
+    >
       <span class="navbar-brand">Categories:</span>
 
       <button
@@ -34,17 +36,6 @@
             <a class="nav-link" href="#">Outwears</a>
           </li>
         </ul>
-
-        <!-- <form class="form-inline">
-          <div class="md-form my-0">
-            <input
-              class="form-control mr-sm-2"
-              type="text"
-              placeholder="Search"
-              aria-label="Search"
-            />
-          </div>
-        </form> -->
       </div>
     </nav>
 
@@ -53,7 +44,6 @@
 
     <section class="text-center mb-4">
       <!--Grid row-->
-
       <div class="row wow fadeIn">
         <% @products.each do |product| %>
         <div class="col-lg-3 col-md-6 mb-4">
@@ -61,12 +51,14 @@
           <div class="card">
             <!--Card image-->
             <div class="view overlay">
-              <img
-                src="images/<%=product.image_product%>"
-                class="card-img-top"
-                alt="product"
-              />
-              <a>
+              <a href="/productdetail/<%=product.id%>">
+                <img
+                  src="images/<%= product.image_product %>"
+                  class="card-img-top"
+                  alt="product"
+                />
+              </a>
+              <a href="/productdetail/<%=product.id%>">
                 <div class="mask rgba-white-slight"></div>
               </a>
             </div>
@@ -75,17 +67,15 @@
             <!--Card content-->
             <div class="card-body text-center">
               <!--Category & Title-->
-              <a href="" class="grey-text">
+              <a href="/productdetail/<%= product.id %>" class="grey-text">
                 <h5><%= product.name %></h5>
               </a>
-              <!-- <h5>
-                <strong>
-                  <a href="" class="dark-grey-text">Black jacket</a>
-                </strong>
-              </h5> -->
 
               <h4 class="font-weight-bold blue-text">
-                <strong><%=number_to_currency(product.price, :unit => "",precision: 0)%> VND</strong>
+                <strong
+                  ><%=number_to_currency(product.price, :unit => "",precision:
+                  0)%> VND</strong
+                >
               </h4>
             </div>
             <!--Card content-->
