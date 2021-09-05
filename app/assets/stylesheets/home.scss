@@ -1,12 +1,11 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-._header{
+.header{
     min-height: 64px;
     background: #f1f0f1 !important;
-    
 }
-._header  img{
+.header  img{
     height: 64px;
 }
 ._input_search{
@@ -80,9 +79,6 @@
 .badge {
     color: #fff;
 }
-// .mdb-color.lighten-3 {
-//     background-color: #929fba!important;
-// }
 .w-100{
     height:500px;
 }
