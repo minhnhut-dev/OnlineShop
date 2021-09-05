@@ -10,6 +10,4 @@ products = Product.create([
 {name:"Áo nam", price: 100000, image_product: "image_2.jpg", active:1},
 {name:"Áo khoác", price: 100000, image_product: "image_3.jpg", active:1},
 {name:"Áo khoác đen", price: 100000, image_product: "image_4.jpg", active:1},
-
-
 ]);
