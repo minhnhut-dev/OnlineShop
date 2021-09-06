@@ -1,5 +1,4 @@
 <h3>Danh sách sản phẩm</h3>
-
     <section class="text-center mb-4">
       <!--Grid row-->
       <div class="row wow fadeIn">
@@ -9,14 +8,12 @@
           <div class="card">
             <!--Card image-->
             <div class="view overlay">
-              <a href="/productdetail/<%=product.id%>">
-                <img
-                  src="images/<%= product.image_product %>"
-                  class="card-img-top"
-                  alt="product"
-                />
-              </a>
-              <a href="/productdetail/<%=product.id%>">
+              <img
+                src="images/<%=product.image_product%>"
+                class="card-img-top"
+                alt="product"
+              />
+              <a>
                 <div class="mask rgba-white-slight"></div>
               </a>
             </div>
@@ -25,15 +22,17 @@
             <!--Card content-->
             <div class="card-body text-center">
               <!--Category & Title-->
-              <a href="/productdetail/<%= product.id %>" class="grey-text">
+              <a href="" class="grey-text">
                 <h5><%= product.name %></h5>
               </a>
+              <!-- <h5>
+                <strong>
+                  <a href="" class="dark-grey-text">Black jacket</a>
+                </strong>
+              </h5> -->
 
               <h4 class="font-weight-bold blue-text">
-                <strong
-                  ><%=number_to_currency(product.price, :unit => "",precision:
-                  0)%> VND</strong
-                >
+                <strong><%=number_to_currency(product.price, :unit => "",precision: 0)%> VND</strong>
               </h4>
             </div>
             <!--Card content-->
@@ -47,4 +46,3 @@
       </div>
       <!--Grid row-->
     </section>
-    
