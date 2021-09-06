@@ -5,7 +5,7 @@
         <!--Grid column-->
         <div class="col-md-6 mb-4">
           <img
-            src="/images/<%=@product_detail.image_product%>"
+            src="/images/<%=@product.image_product%>"
             class="img-fluid product_detail_image"
             alt=""
           />
@@ -19,12 +19,12 @@
             <p class="lead">
               <span>Giá:</span>
               <span
-                ><%= number_to_currency(@product_detail.price, :unit =>
+                ><%= number_to_currency(@product.price, :unit =>
                 "",precision: 0) %> VND</span
               >
             </p>
   
-            <p class="lead font-weight-bold"><%= @product_detail.name %></p>
+            <p class="lead font-weight-bold"><%= @product.name %></p>
   
             <form class="d-flex justify-content-left">
               <!-- Default input -->
