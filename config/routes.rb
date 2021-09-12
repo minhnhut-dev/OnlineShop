@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :products, only: [:show]
   resources :carts, only: [:index]
   get '/products/add_to_cart/:id', to: 'carts#add_to_cart'
+  get '/products/remove_from_cart/:id', to: 'carts#remove_from_cart'
 end
