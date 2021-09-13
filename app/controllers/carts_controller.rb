@@ -15,24 +15,20 @@ class CartsController < ApplicationController
             @product = @product.attributes
             @product['qty']=1
         else
+            @check=true
                 @cart = @cart.each do |product|
                     if product["id"]== id
-                        product["qty"] = product["qty"].to_i + 1  
+                        product["qty"] = product["qty"].to_i + 1 
+                        @check= false 
                     end
                 end
-                @product = Product.find(params[:id])
-                @product = @product.attributes
-                @product['qty']=1
-                @product['total'] = @product["qty"].to_i * @product["price"].to_i
-                @cart << @product unless @cart.include?(id)
-                  
+            @product = Product.find(params[:id])
+            @product = @product.attributes
+            @product['qty']=1         
+            @cart << @product unless @check ==false
         end
-
         data = @cart.present? ? @cart : [@product]
         session[:cart] = data
-        #4: Neu da ton tai thi update quantity += 1
-        #5: Gan nguoc tro lai session cart
-        binding.pry
         redirect_to carts_url
     end
     def load_cart      
