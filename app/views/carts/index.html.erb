@@ -21,8 +21,8 @@
                                     <td class="product-thumbnail"><a href="#"><img src="images/<%=product["image_product"]%>" alt="product img" /></a></td>
                                     <td class="product-name"><a href="#"><%=product["name"]%></a></td>
                                     <td class="product-price"><span class="amount"><%=number_to_currency(product["price"], :unit =>"",precision:0)%> VND</span></td>
-                                    <td class="product-quantity"><input type="number" value="<%=product["qty"]%>"/></td>
-                                    <td class="product-subtotal"><%=number_to_currency(product["price"], :unit =>"",precision:0)%> VND</td>
+                                    <td class="product-quantity"><input type="number" name="qty" value="<%=product["qty"]%>"/></td>
+                                    <td class="product-subtotal"><%=number_to_currency(product["sub_total"], :unit =>"",precision:0)%> VND</td>
                                     <td class="product-remove"><a href="/products/remove_from_cart/<%=product["id"]%>">X</a></td>
                                 </tr>
                                 <% end %>

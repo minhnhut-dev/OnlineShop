@@ -8,7 +8,9 @@ class CartsController < ApplicationController
     def add_to_cart
         cart = session[:cart]
         id = params[:id].to_i
-        Cart.cart(id,cart)
+        @Cart = Cart.new(cart).add_to_cart(id)
+        session[:cart] = @Cart
+        binding.pry
         redirect_to carts_url
     end
 
@@ -17,9 +19,10 @@ class CartsController < ApplicationController
     end
 
     def remove_from_cart
+        cart = session[:cart]
         id = params[:id].to_i
-        @cart = session[:cart]
-        @cart.delete_if { |product| product["id"] == id}
+        @remove_cart = Cart.new(cart).remove_from_cart(id)
+        session[:cart] = @remove_cart
         redirect_to carts_url
     end
 
