@@ -10,7 +10,6 @@ class CartsController < ApplicationController
         id = params[:id].to_i
         @Cart = Cart.new(cart).add_to_cart(id)
         session[:cart] = @Cart
-        binding.pry
         redirect_to carts_url
     end
 
