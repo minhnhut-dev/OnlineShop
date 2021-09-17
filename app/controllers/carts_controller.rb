@@ -8,7 +8,8 @@ class CartsController < ApplicationController
     def add_to_cart
         cart = session[:cart]
         id = params[:id].to_i
-        @Cart = Cart.new(cart).add_to_cart(id)
+        qty= params[:quantity].to_i
+        @Cart = Cart.new(cart).add_to_cart(id,qty)
         session[:cart] = @Cart
         redirect_to carts_url
     end
