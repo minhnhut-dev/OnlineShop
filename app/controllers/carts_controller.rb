@@ -6,10 +6,7 @@ class CartsController < ApplicationController
     end
 
     def add_to_cart
-        cart = session[:cart]
-        id = params[:id].to_i
-        qty= params[:quantity].to_i
-        @Cart = Cart.new(cart).add_to_cart(id,qty)
+        @Cart = Cart.new(session[:cart]).add_to_cart(params[:id].to_i,params[:quantity].to_i)
         session[:cart] = @Cart
         redirect_to carts_url
     end
@@ -19,9 +16,7 @@ class CartsController < ApplicationController
     end
 
     def remove_from_cart
-        cart = session[:cart]
-        id = params[:id].to_i
-        @remove_cart = Cart.new(cart).remove_from_cart(id)
+        @remove_cart = Cart.new(session[:cart]).remove_from_cart(params[:id].to_i)
         session[:cart] = @remove_cart
         redirect_to carts_url
     end
