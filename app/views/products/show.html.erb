@@ -24,19 +24,13 @@
             <p class="lead font-weight-bold"><%= @product.name %></p>
           </div>
           <%= form_with  url: "/add_to_cart/#{@product.id}", method: :post, class: "d-flex justify-content-left" do |form| %>
-            <!-- <form class="d-flex justify-content-left" method="POST" action="/add_to_cart"> -->
                 <div class="input-group-prepend">
                   <span class="input-group-text">Số lượng:</span>
                 </div>
-                <!-- <input type="number" class="form-control" value="1" min="0" name="qty" id="qty"> -->
-                <%= form.text_field :quantity, class: "form-control", type: "number", value: "1" %>
-              <!-- <a class="btn btn-primary"  role="button" type="submit">
-                <i class="fas fa-shopping-cart ml-1">Add to cart</i>
-              </a> -->
+                <%= form.text_field :quantity, class: "form-control", type: "number", value: "1", min: "1" %>
               <button type="submit" class="btn btn-primary">
                 <i class="fas fa-shopping-cart ml-1">Add to cart</i>
               </button>
-            <!-- </form> -->
             <% end %>
           </div>
           <!--Content-->
