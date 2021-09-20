@@ -34,18 +34,14 @@ class Cart
       end
 
       def total
-        @sum = 0
-        if @cart.blank?
-            @sum = 0
-        else
-            @cart.each do |total|
-                @sum += total["sub_total"].to_i  
-              end
-        end
-        return @sum        
+     
+       return sum = 0 if @cart.blank?
+          @cart.inject(0){|sum, e| sum += e["sub_total"].to_i}
+          # @cart.sum {|t| t["sub_total"].to_i}
       end
 
       def remove_from_cart(id)
         @cart.delete_if {|product| product["id"] == id}
       end
+    
 end
