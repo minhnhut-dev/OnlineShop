@@ -3,24 +3,22 @@ class Cart
         @cart= cart
     end
     def add_to_cart(id,qty)
-        product= Cart.find_product(id,qty)
-        if !@cart.any?{|hash| hash["id"] == product["id"]} 
-          @cart  << product
+        if !@cart.any?{|hash| hash["id"]} 
+          @cart << find_product(id,qty)
         else
           @cart = update_cart(id,qty)
         end
     end
 
-      def self.sub_total(qty,price)
-        sub_total = 0
-        sub_total = qty.to_i * price.to_i
+      def sub_total(qty,price)
+        qty.to_i * price.to_i
       end
 
-      def self.find_product(id,qty)
+      def find_product(id,qty)
         @product = Product.find(id)
         @product = @product.attributes
         @product['qty'] = qty
-        @product ["sub_total"] =  Cart.sub_total(qty, @product["price"])
+        @product ["sub_total"] = sub_total(qty, @product["price"])
         return @product
       end
 
@@ -37,7 +35,7 @@ class Cart
          @cart.each do |product|
           if product["id"] == id
               product["qty"] = product["qty"].to_i + qty 
-              product ["sub_total"] =  Cart.sub_total(product["qty"], product["price"])
+              product ["sub_total"] =  sub_total(product["qty"], product["price"])
           end
         end
       end
