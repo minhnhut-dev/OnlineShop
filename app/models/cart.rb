@@ -3,18 +3,13 @@ class Cart
         @cart= cart
     end
     def add_to_cart(id,qty)
-        if @cart.blank? 
-         product= Cart.find_product(id,qty)
-         @cart = [product]
+        product= Cart.find_product(id,qty)
+        if !@cart.any?{|hash| hash["id"] == product["id"]} 
+          @cart  << product
         else
-          data= update_cart(id,qty)
-          product = Cart.find_product(id, qty)
-          unless @cart.any? {|h| h["id"] == product["id"] }
-              data << product
-          end
-          @cart =data
+          @cart = update_cart(id,qty)
         end
-      end
+    end
 
       def self.sub_total(qty,price)
         sub_total = 0
@@ -30,8 +25,8 @@ class Cart
       end
 
       def total
-       return sum = 0 if @cart.blank?
-          @cart.inject(0){|sum, e| sum += e["sub_total"].to_i}
+        return 0 if @cart.blank?
+        @cart.inject(0){|sum, e| sum += e["sub_total"].to_i}
       end
 
       def remove_from_cart(id)
