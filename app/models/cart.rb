@@ -3,7 +3,7 @@ class Cart
         @cart= cart
     end
     def add_to_cart(id,qty)
-        if !@cart.any?{|hash| hash["id"]} 
+        if !@cart.any?{|hash| hash["id"] == id} 
           @cart << find_product(id,qty)
         else
           @cart = update_cart(id,qty)
