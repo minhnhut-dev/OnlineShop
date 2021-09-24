@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   resources :carts, only: [:index]
   post '/add_to_cart/:id', to: 'carts#add_to_cart'
   get '/products/remove_from_cart/:id', to: 'carts#remove_from_cart'
+  namespace :admin do
+    root to: "dashboard#index"
+    resources :products, only: [:index, :create]
+  end
 end
