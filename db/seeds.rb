@@ -5,11 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-products = Product.create([
-{name:"Áo thun", price: 100000, image_product: "image_1.jpg",category_id:1, active:1},
-{name:"Áo nam", price: 100000, image_product: "image_2.jpg",category_id:1, active:1},
-{name:"Áo khoác", price: 100000, image_product: "image_3.jpg",category_id:1, active:1},
-{name:"Áo khoác đen", price: 100000, image_product: "image_4.jpg",category_id:1, active:1},]);
 
 categories = Category.create([
 {name:"Áo", active:1},

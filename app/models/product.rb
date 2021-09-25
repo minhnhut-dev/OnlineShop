@@ -1,4 +1,4 @@
 class Product < ApplicationRecord
     belongs_to :category
-    has_one_attached :image_product
+    has_one_attached :image
 end

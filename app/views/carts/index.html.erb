@@ -17,8 +17,9 @@
                             </thead>
                             <tbody>
                                 <% @cart.each do |product| %>
+                                <% @img = Product.find(product["id"]).image %>
                                 <tr>
-                                    <td class="product-thumbnail"><a href="#"><img src="images/<%=product["image_product"]%>" alt="product img" /></a></td>
+                                    <td class="product-thumbnail"><a href="#"><%=image_tag(@img)%></a></td>
                                     <td class="product-name"><a href="#"><%=product["name"]%></a></td>
                                     <td class="product-price"><span class="amount"><%=number_to_currency(product["price"], :unit =>"",precision:0)%> VND</span></td>
                                     <td class="product-quantity"><input type="number" name="qty" value="<%=product["qty"]%>"/></td>
@@ -53,10 +54,6 @@
                                 <h2>Cart Totals</h2>
                                 <table>
                                     <tbody>
-                                        <!-- <tr class="cart-subtotal">
-                                            <th>Subtotal</th>
-                                            <td><span class="amount"><%=number_to_currency(@total, :unit =>"",precision:0)%> VND</span></td>
-                                        </tr> -->
                                         <tr class="shipping">
                                             <th>Shipping</th>
                                             <td>

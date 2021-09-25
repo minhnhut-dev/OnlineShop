@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/products/remove_from_cart/:id', to: 'carts#remove_from_cart'
   namespace :admin do
     root to: "dashboard#index"
-    resources :products, only: [:index, :create]
+    resources :products, only: [:index, :create, :show, :update]
+    get '/admin/products/remove/:id', to: 'products#delete'
   end
 end
