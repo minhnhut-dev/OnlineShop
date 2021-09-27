@@ -19,17 +19,15 @@ class Admin::ProductsController < Admin::AdminController
     def update
        @product = Product.find(params[:id]) 
        @product.update(product_params)
-       if @product.save
         redirect_to admin_products_path , notice: 'Product was successfully update'
-       else
-        redirect_to admin_products_path , notice: 'Product was error update'
-        end
     end
 
-    def delete
-       @product = Product.delete(params[:id])
-        redirect_to admin_products_path , notice: 'Product was successfully delete'
+    def destroy
+       @product = Product.find(params[:id])
+       @product.destroy
+       redirect_to admin_products_path , notice: 'Product was successfully delete'
     end
+
     private
     def product_params
         params.permit(:name, :price, :active, :image, :category_id)

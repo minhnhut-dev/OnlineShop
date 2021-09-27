@@ -1,0 +1,31 @@
+<% @products.each do |product| %>
+<tr>
+    <td><%= product.name %></td>
+    <td><%= number_to_currency(product.price, :unit => "",precision: 0)%> VND</td>
+    <td><%= image_tag(product.image, size: "70x70") %></td>
+    <td><%=product.category.name%></td>
+    <td>
+       <%if product.active? %> 
+       <span class="badge badge-success">Active</span>
+       <% else %>
+       <span class="badge badge-danger">Deactive</span>
+       <% end %>
+    </td>
+    <td>
+        <div class="btn-group">
+            <a href="/admin/products/<%= product.id%>">
+                <button type="submit" class="btn btn-warning" data-toggle="tooltip"
+                    data-placement="top" title="Chỉnh sửa">
+                    <i class="fas fa-edit"></i>
+                </button>
+            </a>
+            <%=link_to "/admin/products/#{product.id}", method: :delete do  %>
+                <button type="button" class="btn btn-danger" 
+                title="Xóa">
+                <i class="far fa-trash-alt"></i>
+            </button>
+            <% end %>
+        </div>
+    </td>
+</tr>
+<% end %>
