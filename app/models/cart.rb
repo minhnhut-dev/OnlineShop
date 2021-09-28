@@ -1,7 +1,8 @@
-class Cart 
-    def initialize(cart)
-        @cart= cart
-    end
+
+class Cart
+def initialize(cart)
+        @cart = cart
+end
     def add_to_cart(id,qty)
         if !@cart.any?{|hash| hash["id"] == id} 
           @cart << find_product(id,qty)
@@ -24,7 +25,7 @@ class Cart
 
       def total
         return 0 if @cart.blank?
-        @cart.inject(0){|sum, e| sum += e["sub_total"].to_i}
+        @cart.inject(0) {|sum, e| sum += e["sub_total"].to_i}
       end
 
       def remove_from_cart(id)
