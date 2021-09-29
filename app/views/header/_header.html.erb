@@ -16,7 +16,28 @@
     </form>
     <div class="pdl0 fl1">
       <div class="onlineshop-right-top-block">
+        
+        <% if current_user %>
         <a class="onlineshop-right-item" href="/">
+          <img
+            src="//theme.hstatic.net/1000026716/1000440777/14/ak1.png?v=21636"
+            alt="register"
+          />
+          <div class="header-right-description">
+            <span class="onlineshop-text"><%= current_user.name%></span>
+          </div>
+        </a>
+        <%= link_to destroy_user_session_path	, class: "onlineshop-right-item", method: :delete do %>
+          <img
+            src="//theme.hstatic.net/1000026716/1000440777/14/ak1.png?v=21636"
+            alt="register"
+          />
+          <div class="header-right-description">
+            <span class="onlineshop-text">Đăng xuất</span>
+          </div>
+        <% end %>
+        <% else %>
+        <%= link_to new_user_registration_path, class: "onlineshop-right-item", method: :get do %>
           <img
             src="//theme.hstatic.net/1000026716/1000440777/14/ak1.png?v=21636"
             alt="register"
@@ -24,8 +45,8 @@
           <div class="header-right-description">
             <span class="onlineshop-text">Đăng ký</span>
           </div>
-        </a>
-        <a class="onlineshop-right-item" href="/">
+          <% end %>
+          <%= link_to new_user_session_path, class: "onlineshop-right-item", method: :get do %>
           <img
             src="//theme.hstatic.net/1000026716/1000440777/14/ak1.png?v=21636"
             alt="register"
@@ -33,7 +54,10 @@
           <div class="header-right-description">
             <span class="onlineshop-text">Đăng nhập</span>
           </div>
-        </a>
+          <% end %>
+          
+        <% end %>
+
         <a class="onlineshop-right-item" href="/">
           <img
             src="https://theme.hstatic.net/1000026716/1000440777/14/ak4.png?v=21637"
@@ -62,6 +86,5 @@
   </nav>
 </div>
 <%= render "header/banner" %>
-<%= render "header/nav" %>
 
 
