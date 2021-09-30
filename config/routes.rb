@@ -10,5 +10,11 @@ Rails.application.routes.draw do
     root to: "dashboard#index"
     resources :products, only: [:index, :create, :show, :update, :destroy]
     resources :category, only: [:index, :create, :show, :update, :destroy]
+    resources :sessions, only: [:create, :destroy]
+    resources :registers, only: [:create]
+
+    get '/sign_in', to: 'sessions#new'
+    get '/sign_up', to: 'registers#new'
+
   end
 end

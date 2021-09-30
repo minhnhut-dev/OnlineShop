@@ -11682,3 +11682,6 @@ body {
   background-color: #5ba2e6;
   color: #fff;
 }
+.login_admin,.sign_up {
+  margin-top :100px;
+}
