@@ -24,7 +24,7 @@
             alt="register"
           />
           <div class="header-right-description">
-            <span class="onlineshop-text"><%= current_user.name%></span>
+            <span class="onlineshop-text"><%= current_user.email.split('@')[0]%></span>
           </div>
         </a>
         <%= link_to destroy_user_session_path	, class: "onlineshop-right-item", method: :delete do %>
