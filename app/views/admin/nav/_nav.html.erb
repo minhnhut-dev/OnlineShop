@@ -12,23 +12,14 @@
     </form>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-        <% if logged_in? %>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= current_admin.name %> <i class="fas fa-user fa-fw"></i></a>
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user fa-fw"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#!">Settings</a></li>
                 <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                 <li><hr class="dropdown-divider" /></li>
-                <!-- <li><a class="dropdown-item" href="#!">Logout</a></li> -->
-                <li>
-                    <%= link_to "Logout",  admin_session_path(session[:admin_id]), method: :delete, class: "dropdown-item"%>
-                </li>
+                <li><a class="dropdown-item" href="#!">Logout</a></li>
             </ul>
         </li>
-        <% else %>
-        <%= link_to admin_sign_in_path, method: :get do%> 
-            <button class="btn btn-primary">Login</button>
-        <% end %>
-        <% end %>
     </ul>
 </nav>
