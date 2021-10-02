@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "home#index"
   resources :products, only: [:show]
@@ -9,5 +10,11 @@ Rails.application.routes.draw do
     root to: "dashboard#index"
     resources :products, only: [:index, :create, :show, :update, :destroy]
     resources :category, only: [:index, :create, :show, :update, :destroy]
+    resources :sessions, only: [:create, :destroy]
+    resources :registers, only: [:create]
+
+    get '/sign_in', to: 'sessions#new'
+    get '/sign_up', to: 'registers#new'
+
   end
 end
