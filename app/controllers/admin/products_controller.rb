@@ -1,6 +1,6 @@
 class Admin::ProductsController < Admin::AdminController
     def index
-        @products = Product.all
+        @products = Product.with_attached_image.all
         @categories = Category.all
     end
     def create
