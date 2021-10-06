@@ -75,9 +75,10 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.after_initialize do
+    Bullet.console = true
     Bullet.enable = true
     Bullet.bullet_logger = true
-    Bullet.raise = true # raise an error if n+1 query occurs
+    Bullet.alert = true
     Bullet.unused_eager_loading_enable = false
   end
 end
