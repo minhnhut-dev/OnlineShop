@@ -74,7 +74,7 @@
                                     <label>Belongs to type(required)</label>
                                     <select name="category_id" class="form-control" required>
                                         <option>- select -</option>
-                                        <% @products.includes(:category).each do |product| %>
+                                        <% @products.each do |product| %>
                                         <option value="<%= product.category.id%>"><%= product.category.name %></option>
                                         <% end %>
                                     </select>

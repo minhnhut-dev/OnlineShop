@@ -2,7 +2,7 @@
     <section class="text-center mb-4">
       <!--Grid row-->
       <div class="row wow fadeIn">
-        <% @products.includes(:category).each do |product| %>
+        <% @products.each do |product| %>
          <% if product.active? && product.category.active? && product.category_id? %>
         <div class="col-lg-3 col-md-6 mb-4">
           <!--Card-->

@@ -1,4 +1,4 @@
-<% @products.includes(:category).each do |product| %>
+<% @products.each do |product| %>
 <tr>
     <td><%= product.name %></td>
     <td><%= number_to_currency(product.price, :unit => "",precision: 0)%> VND</td>
