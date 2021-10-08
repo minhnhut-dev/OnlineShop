@@ -1,7 +1,6 @@
 class Admin::ProductsController < Admin::AdminController
     def index
-        @products = Product.all
-        @categories = Category.all
+        @products = Product.includes(:category, image_attachment: :blob)
     end
     def create
        @product= Product.new(product_params)

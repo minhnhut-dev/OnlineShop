@@ -35,6 +35,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bullet', '~> 6.1', '>= 6.1.5'
   gem 'devise', '~> 4.8'
   gem 'rubocop', '~> 1.21'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
