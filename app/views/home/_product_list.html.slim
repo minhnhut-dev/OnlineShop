@@ -1,0 +1,18 @@
+h3 Danh sách sản phẩm
+section.text-center.mb-4
+    .row.wow.fadeIn
+        - @products.each do |product|
+            - if product.active? && product.category.active? && product.category_id?
+                .col-lg-3.col-md-6.mb-4
+                    .card 
+                        .view-overlay
+                            = link_to product_path(product), method: :get do
+                                = image_tag(product.image)
+                        .card-body.text-center
+                            = link_to product_path(product), class: "grey-text"
+                                h5
+                                    = product.name
+                            h4.font-weight-bold.blue-text
+                                strong 
+                                    = number_to_currency(product.price, :unit => "",precision: 0)
+                                | VNĐ
