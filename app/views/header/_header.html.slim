@@ -1,0 +1,44 @@
+.header
+    nav.navbar.navbar-expand-lg.navbar-light.d-flex.header
+        = link_to root_path, class: "navbar-brand" do
+            = image_tag "logo-nbstore.png", alt: "Logo"
+        = form_with url: "", class: "form-inline my-2 my-lg-0" do |f|
+            = f.text_field :search, class: "form-control mr-sm-2 _input_search", type: "search", placeholder: "Bạn cần tìm gì?"
+            button.btn.btn-primary._btn_search
+                i.fas.fa-search
+        .pdl0.fl1
+            .onlineshop-right-top-block
+                - if current_user
+                    = link_to root_path, class: "onlineshop-right-item" do
+                        = image_tag "https://theme.hstatic.net/1000026716/1000440777/14/ak3.png?v=22219", alt: "infomation_user"
+                        .header-right-description
+                            span.onlineshop-text
+                                = current_user.email.split('@')[0]
+                    = link_to destroy_user_session_path, class: "onlineshop-right-item", method: :delete do 
+                        = image_tag "//theme.hstatic.net/1000026716/1000440777/14/ak2.png?v=19762", alt: "sign_out"
+                        .header-right-description
+                            span.onlineshop-text
+                                | Đăng xuất
+                - else
+                    = link_to new_user_registration_path, class: "onlineshop-right-item" do
+                        = image_tag "https://theme.hstatic.net/1000026716/1000440777/14/ak1.png?v=22221", alt: "infomation_user"
+                        .header-right-description
+                            span.onlineshop-text
+                                | Đăng ký
+                    = link_to new_user_session_path, class: "onlineshop-right-item" do
+                        = image_tag "https://theme.hstatic.net/1000026716/1000440777/14/ak3.png?v=22221", alt: "sign_out"
+                        .header-right-description
+                            span.onlineshop-text
+                                | Đăng nhập
+                = link_to carts_path, class: "onlineshop-right-item cart" do 
+                        - if session[:cart] == nil
+                            .online-shop-number
+                                | 0
+                        - else
+                            .online-shop-number 
+                                = session[:cart].size
+                        = image_tag "https://theme.hstatic.net/1000026716/1000440777/14/ak5.png?v=21636", alt: "cart"
+                        .header-right-description
+                            span.onlineshop-text
+                                | Giỏ hàng
+= render "header/banner"
