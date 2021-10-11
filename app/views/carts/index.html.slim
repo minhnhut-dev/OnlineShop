@@ -1,0 +1,61 @@
+.cart-main-area.ptb--120.bg__white
+  .container
+    .row
+      .col-md-12.col-sm-12.col-xs-12
+        = form_with url: "" do |f|
+          .table-content.table-responsive
+            table
+              thead
+                tr
+                  th.product-thumbnail Image
+                  th.product-name Product 
+                  th.product-price Price
+                  th.product-quantity Quantity
+                  th.product-subtotal Total
+                  th.product-remove Remove
+              tbody
+                - @cart.each do |product|
+                  - @img = Product.find(product["id"]).image
+                  tr 
+                    td.product-thumbnail
+                      = link_to "#" do
+                        = image_tag(@img)
+                    td.product-name
+                      = link_to "#" do
+                        = product["name"]
+                    td.product-price
+                      span.amount
+                        = number_to_currency(product["price"], :unit =>"",precision:0)
+                        |  VND
+                    td.product-quantity
+                      = number_field_tag("qty", product["qty"])
+                    td.product-subtotal
+                      = number_to_currency(product["sub_total"], :unit =>"",precision:0)
+                      |  VND
+                    td.product-remove
+                      a#remove_from_cart[href="/products/remove_from_cart/#{product["id"]}"] X
+          .row
+            .col-md-8.col-sm-7.col-xs-12
+              .user-information
+                h2 User information
+                .col-md-7.col-sm-8
+                  .form-group
+                    label Email address
+                    = f.text_field :email, class: "form-control"
+                  .form-group
+                    label Name User 
+                    = f.text_field :name, class: "form-control"
+            .col-md-4.col-sm-5.col-xs-12    
+              .cart_totals
+                h2 Cart Totals
+                table
+                  tbody
+                    tr.shipping
+                      th Shipping
+                      / td
+                      /   ul#shipping_method
+                      /     li
+                      /       = f.radio_button :shipping, :value => "1"
+
+      
+
