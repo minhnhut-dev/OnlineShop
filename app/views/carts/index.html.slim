@@ -52,10 +52,32 @@
                   tbody
                     tr.shipping
                       th Shipping
-                      / td
-                      /   ul#shipping_method
-                      /     li
-                      /       = f.radio_button :shipping, :value => "1"
-
-      
-
+                      td
+                        ul#shipping_method
+                          li
+                            = f.radio_button :shipping, :value => "1"
+                            label 
+                            |  Free Shipping
+                          li
+                    tr.payment
+                      th Payment 
+                      td
+                        ul#payment_method
+                          li 
+                            = f.radio_button :payment, :value => "1"
+                            label 
+                              |  Payment on delivery
+                          li
+                            = f.radio_button :payment_momo, :value => "2"
+                            label 
+                              |  Payment Momo
+                    tr.order-total
+                      th Total 
+                      td
+                        strong
+                          span.amount
+                            = number_to_currency(@total, :unit =>"",precision:0)
+                            | VNĐ
+                .wc-proceed-to-checkout
+                  = link_to ""
+                    | Proceed to pay
