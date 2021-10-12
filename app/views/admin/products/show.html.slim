@@ -1,0 +1,29 @@
+#layoutSidenav
+  = render "admin/sidebar/sidebar"
+  #layoutSidenav_content
+    main
+      .container-fluid.px-4
+        section.content
+          .container-fluid
+          .container 
+            h2 Update product
+            = form_with url: "/admin/products/#{@product.id}", method: :put, multipart: true, class: "was-validated d-flex flex-column input-form" do |f|
+              .form-group.col-12
+                label Name: 
+                = f.text_field :name, value: "#{@product.name}", class: "form-control", required: true
+              .form-group.col-lg-12
+                label Price: 
+                = f.text_field :price, value: "#{@product.price}", class: "form-control", required: true
+              .form-group.col-lg-6
+                label Image: 
+                = image_tag(@product.image, size: "100x100") 
+              .form-group.col-lg-6 
+                label Status: 
+                select.form-control#status[name="active"]
+                  option[value="1"] Active
+                  option[value="0"] Deactive
+              .form-group.col-lg-6
+                label Image:
+                = f.text_field :image, type: "file", class: "form-control"
+              = f.submit "Update product", class: "btn btn-primary btn-submit-input-form btn-cap-nhat"
+

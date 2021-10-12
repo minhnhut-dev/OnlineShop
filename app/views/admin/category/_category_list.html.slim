@@ -1,0 +1,19 @@
+- @categories.each do |category|
+	tr 
+		td
+			= category.name
+		td 
+			- if category.active?
+				span.badge.badge-success Active
+			- else 
+				span.badge.badge-danger Deactive
+		td 
+			.btn-group
+				= link_to admin_category_path(category) do 
+					button.btn.btn-warning[data-toggle="tooltip" data-placement="top" title="Chỉnh sửa"]
+						i.fas.fa-edit
+				= link_to "/admin/category/#{category.id}", method: :delete do
+					button.btn.btn-danger[title="Xóa"]
+						i.far.fa-trash-alt
+						
+			

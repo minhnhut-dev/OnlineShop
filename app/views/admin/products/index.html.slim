@@ -1,0 +1,68 @@
+#layoutSidenav
+  = render "admin/sidebar/sidebar"
+  #layoutSidenav_content
+		main
+			.container-fluid.px-4
+				section.content
+					.container-fluid
+						p#notice[style="color:green;"]
+							=	notice
+						.row 
+							.col-12
+								.card
+									.card-header.d-flex.justify-content-between.align-items-center
+										button.btn.btn-primary[data-toggle="modal" data-target="#exampleModal"]
+											i.fas.fa-plus-circle
+												|	 Add new product
+									.card-body.table-responsive.p-0
+										table.table.table-head-fixed.table-striped
+											thead
+												tr
+													th Name Product 
+													th Price
+													th Image 
+													th Category
+													th Status
+													th function
+											tbody
+												= render "admin/products/product_list"
+				.modal.fade.custom-modal#exampleModal[tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"]
+					.modal-dialog
+						.modal-content
+							= form_with url: '/admin/products', multipart: true do |f|
+								.modal-header
+									h5.modal-title#exampleModalLabel Add new product
+									button.close[data-dismiss="modal" aria-label="Close"]
+										span[aria-hidden="true"]
+											| &times;
+								.modal-body
+									.row 
+										.col-lg-12
+											.form-group
+												label Full name category (required)
+												= f.text_field :name, class: "form-control"
+									.row
+										.col-lg-6
+											.form-group
+												label Price (required)
+												= f.text_field :price, class: "form-control"
+										.col-lg-6
+											.form-group
+												label Belongs to type(required) 
+												select.form-control[name="category_id" required]
+													option - select -
+													- @categories.each do |category|
+														option[value="#{category.id}"]
+															= category.name
+									.form-group
+										label Avatar image (optional):
+										= f.text_field :image, type: "file", class: "form-control"
+									.row 
+										.col-lg-6 
+											.form-group
+												label Status
+												select.form-control[name="active" required]
+													option[value="1"] Active
+													option[value="0"] Deactive
+								.modal-footer 
+									= f.submit "Add new product", class: "btn btn-primary"
