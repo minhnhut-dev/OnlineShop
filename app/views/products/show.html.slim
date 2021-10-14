@@ -1,0 +1,20 @@
+main.mt-5.pt-4
+  .container.dark-grey-text.mt-5
+    .row.wow.fadeIn
+      .col-md-6.mb-4
+        = image_tag(@product.image)
+      .col-md-6.mb-4
+        .p-4 
+          p.lead
+            span Price: 
+            span
+              = number_to_currency(@product.price, :unit =>"" ,precision: 0)
+            | VNĐ
+          p.lead.font-weight-bold
+            = @product.name
+        = form_with  url: "/add_to_cart/#{@product.id}", method: :post, class: "d-flex justify-content-left" do |form|
+          .input-group-prepend
+            span.input-group-text Số lượng:
+          = form.text_field :quantity, class: "form-control", type: "number", value: "1", min: "1"
+          button.btn.btn-primary[type="submit"]
+            i.fas.fa-shopping-cart.ml-1 Add to cart

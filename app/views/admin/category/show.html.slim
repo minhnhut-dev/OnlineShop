@@ -1,0 +1,19 @@
+#layoutSidenav
+  =  render "admin/sidebar/sidebar"
+  #layoutSidenav_content
+    main
+      .container-fluid.px-4
+        section.content
+          .container-fluid 
+          .container 
+            h2 Update category 
+            = form_with url: "/admin/category/#{@category.id}", method: :put, multipart: true, class: "was-validated d-flex flex-column input-form" do |f|
+              .form-group.col-12
+                label Name: 
+                = f.text_field :name, class: "form-control", required: true, value: "#{@category.name}"
+              .form-group.col-12 
+                label Status: 
+                select.form-control#status[name="active"]
+                  option[value="1"] Active 
+                  option[value="0"] Deactive 
+              = f.submit "Update category", class: "btn btn-primary"

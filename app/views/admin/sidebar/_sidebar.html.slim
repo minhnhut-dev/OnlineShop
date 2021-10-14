@@ -1,0 +1,18 @@
+#layoutSidenav_nav
+  nav#sidenavAccordion.sb-sidenav.accordion.sb-sidenav-dark
+    .sb-sidenav-menu
+      .nav
+        .sb-sidenav-menu-heading Core
+        = link_to admin_root_path, class: "nav-link" do
+          .sb-nav-link-icon
+            i.fas.fa-tachometer-alt
+              |  Dashboard
+        .sb-sidenav-menu-heading Manage
+        = link_to admin_products_path, class: "nav-link" do
+          .sb-nav-link-icon
+            i.fas.fa-shopping-cart
+              |  Product
+        = link_to admin_category_index_path, class: "nav-link" do
+          .sb-nav-link-icon
+            i.fas.fa-shopping-basket
+              |  Category
