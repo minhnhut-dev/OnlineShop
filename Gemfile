@@ -35,7 +35,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
-
+gem 'bundler', '~> 2.2', '>= 2.2.29'
 group :development do
   gem 'bullet', '~> 6.1', '>= 6.1.5'
   gem 'devise', '~> 4.8'
