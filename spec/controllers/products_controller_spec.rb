@@ -11,10 +11,9 @@ RSpec.describe ProductsController, type: :controller do
 
         context "failure" do
           it "id not invalid" do
-            # id  error
-              expect {assigns(:product).id} .to raise_error {ActiveRecord::RecordNotFound} 
+            get :show, params: {id: product.id}
+            expect(assigns(:product).id).to  be_present, 'Could not find id!'
           end
         end
-        
     end
 end
