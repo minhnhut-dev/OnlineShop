@@ -34,9 +34,14 @@ gem 'slim'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'shoulda-matchers'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
 end
-
+gem 'bundler', '~> 2.2', '>= 2.2.29'
 group :development do
+  # gem 'factory_girl_rails'
+  gem "rspec-rails"
   gem 'bullet', '~> 6.1', '>= 6.1.5'
   gem 'devise', '~> 4.8'
   gem 'rubocop', '~> 1.21'
@@ -48,9 +53,11 @@ group :development do
   #pry
   gem 'pry', '~> 0.14.1'
   gem 'awesome_print', '~> 1.9', '>= 1.9.2'
+  gem 'activestorage', '~> 6.1', '>= 6.1.4.1'
 end
 
 group :test do
+  gem "rspec-rails"
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
@@ -58,6 +65,10 @@ group :test do
   gem 'webdrivers'
   #pry
   gem 'pry', '~> 0.14.1'
+  gem 'database_cleaner', '~> 1.5'
+  # gem 'factory_girl', '~> 4.9'
+  gem 'faker', '~> 2.19'
+  gem 'devise', '~> 4.8'
 
 end
 
