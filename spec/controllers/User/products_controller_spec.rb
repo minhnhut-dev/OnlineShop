@@ -8,13 +8,5 @@ RSpec.describe ProductsController, type: :controller do
             expect(assigns(:product).id).to eq product.id  
            end
         end
-
-        context "failure" do
-          it "id not invalid" do
-            # id  error
-              expect {assigns(:product).id} .to raise_error {ActiveRecord::RecordNotFound} 
-          end
-        end
-        
     end
 end

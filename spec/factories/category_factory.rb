@@ -1,6 +1,10 @@
 FactoryBot.define do
   factory :category do
     name { "áo" }
-    acived { true}
+    active { true}
+  end
+  factory :invalid_category, parent: :category do
+    name {""}
+    active { true}
   end
 end
