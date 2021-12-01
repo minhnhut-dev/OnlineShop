@@ -9,7 +9,7 @@ RSpec.describe Admin::ProductsController, type: :controller do
     context "check list product" do
       it 'check list product' do
         get :index
-        expect(assigns(:products).size) ==  products.size
+        expect(assigns(:products).size).to eq products.size
       end
     end
     context 'check product is active' do
@@ -17,7 +17,7 @@ RSpec.describe Admin::ProductsController, type: :controller do
       let!(:product_deactive) {FactoryBot.create(:product, active: false)  } 
       it 'show all product is active' do
         get :index
-        expect(assigns(:products).first) ==  product_active
+        expect(assigns(:products).first).to eq product_active
       end
     end
   end
@@ -44,7 +44,13 @@ RSpec.describe Admin::ProductsController, type: :controller do
       end
     end
     context 'with invalid attributes' do
-      it 'does not save the new contact' do
+      it 'does not change  attributes' do
+        expect{ 
+          post :create, params: FactoryBot.attributes_for(:invalid_product, category_id: category)
+        }.to_not change(Product, :count)
+          
+      end
+      it 'redirect new page ' do
         post :create, params: FactoryBot.attributes_for(:invalid_product, category_id: category)
         expect(response).to redirect_to admin_products_path 
       end
@@ -61,6 +67,11 @@ RSpec.describe Admin::ProductsController, type: :controller do
       end
     end
     context "Failure" do
+      it 'does not change  attributes' do
+        expect{
+          put :update, params: FactoryBot.attributes_for(:product, id: product.id, name: "", category_id: category)
+        }.to_not change(Product, :count)
+      end
       it 'invalid product' do
         put :update, params: FactoryBot.attributes_for(:product, id: product.id, name: "", category_id: category)
         expect(response).to redirect_to admin_products_path  

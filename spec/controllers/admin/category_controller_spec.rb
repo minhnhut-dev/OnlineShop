@@ -2,14 +2,14 @@
 
 require 'spec_helper'
 require 'rails_helper'
-
+require 'pry'
 RSpec.describe Admin::CategoryController, type: :controller do
   describe '#index' do
     let!(:categories) { FactoryBot.create_list(:category,2)}
    context "check list category" do
       it 'check list category' do
         get :index
-        expect(assigns(:categories).size) == categories.size
+        expect(assigns(:categories).size).to eq categories.size
       end 
    end
    context "show all category" do
@@ -17,7 +17,7 @@ RSpec.describe Admin::CategoryController, type: :controller do
     let!(:category_deactive) { FactoryBot.create(:category,active: false) } 
      it 'show category is active' do
        get :index
-        expect(assigns(:categories).first) == category_active
+        expect(assigns(:categories).first).to eq category_active
      end
    end
   end
@@ -35,12 +35,19 @@ RSpec.describe Admin::CategoryController, type: :controller do
           post :create, params: FactoryBot.attributes_for(:category, active: true)
         }.to change(Category, :count).by(1)
       end
+
     it 'redirect to admin category page' do
       post :create, params: FactoryBot.attributes_for(:category, active: true)
       expect(response).to redirect_to admin_category_index_path
     end
   end
+
   context "failure" do
+      it 'does not save the new category' do
+        expect{ 
+          post :create, params: FactoryBot.attributes_for(:invalid_category)
+        }.to_not change(Category, :count)  
+      end
       it 'with invalid attributes' do
         post :create, params: FactoryBot.attributes_for(:invalid_category)
         expect(response).to redirect_to admin_category_index_path
@@ -57,6 +64,11 @@ RSpec.describe Admin::CategoryController, type: :controller do
       end
     end
     context 'failure' do
+      it 'does not change  attributes' do
+        expect{ 
+          put :update, params: FactoryBot.attributes_for(:category, id: category.id, name:'')
+        }.to_not change(Category,:count)
+      end
       it 'invalid category' do
         put :update, params: FactoryBot.attributes_for(:category, id: category.id, name:'')
         expect(response).to redirect_to  admin_category_index_path
@@ -77,5 +89,4 @@ RSpec.describe Admin::CategoryController, type: :controller do
       expect(response).to redirect_to admin_category_index_path
     end
   end
-
 end
