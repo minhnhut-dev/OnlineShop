@@ -20,11 +20,12 @@ end
         @product = @product.attributes
         @product['qty'] = qty
         @product ["sub_total"] = sub_total(qty, @product["price"])
+        @product ["total"] = total
         return @product
       end
 
       def total
-        return 0 if @cart.blank?
+        return 0 if @cart.blank?  
         @cart.inject(0) {|sum, e| sum += e["sub_total"].to_i}
       end
 
@@ -37,6 +38,7 @@ end
           if product["id"] == id
               product["qty"] = product["qty"].to_i + qty 
               product ["sub_total"] =  sub_total(product["qty"], product["price"])
+              product ["total"] = total
           end
         end
       end

@@ -14,6 +14,7 @@ class CartsController < ApplicationController
     def load_cart      
         @cart = session[:cart]
         @total = Cart.new(@cart).total
+        @provinces = Province.all
     end
 
     def remove_from_cart

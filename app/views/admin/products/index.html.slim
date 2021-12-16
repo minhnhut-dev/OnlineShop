@@ -6,7 +6,7 @@
        section.content
          .container-fluid
            p#notice[style="color:green;"]
-             =  notice
+             = notice
              .row 
                .col-12
                  .card
@@ -15,17 +15,23 @@
                         i.fas.fa-plus-circle
                           |   Add new product
                     .card-body.table-responsive.p-0
-                      table.table.table-head-fixed.table-striped
-                        thead 
-                          tr 
-                            th Product name
-                            th Price
-                            th Image
-                            th Category
-                            th Active
-                            th Function
-                        tbody
-                          = render "admin/products/product_list"
+                      = form_tag '/admin/delete_multiple', method: :delete do
+                          table.table.table-head-fixed.table-striped
+                            thead 
+                              tr 
+                                th Product name
+                                th Price
+                                th Image
+                                th Category
+                                th Active
+                                th Function
+                                th 
+                                  button.btn.btn-danger[title="xóa", type="submit"]
+                                   i.far.fa-trash-alt
+                                  input type="checkbox" name="check_all" id="check_all" style="margin-left:10px"/
+                            tbody
+                              = render "admin/products/product_list"
+                          = will_paginate @products, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
        .modal.fade.custom-modal#exampleModal[tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"]
           .modal-dialog
             .modal-content
@@ -38,7 +44,7 @@
                 .modal-body 
                   .row
                     .col-lg-12 
-                      .form-group
+                      .form-group 
                         label Full name category (required) :
                         = f.text_field :name, class: "form-control", required: true
                   .row

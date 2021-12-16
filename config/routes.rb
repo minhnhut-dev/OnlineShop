@@ -15,6 +15,12 @@ Rails.application.routes.draw do
 
     get '/sign_in', to: 'sessions#new'
     get '/sign_up', to: 'registers#new'
+    delete '/delete_multiple', to: 'products#update_multiple'
+  end
+  namespace :api do
+    get '/province', to: 'address_user#load_province'
+    get '/district/:id', to: 'address_user#load_district_by_province_id'
+    get '/ward/:id', to: 'address_user#load_ward'
 
   end
 end

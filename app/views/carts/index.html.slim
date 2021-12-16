@@ -1,8 +1,10 @@
 .cart-main-area.ptb--120.bg__white
+  / h1 
+  /  = @cart
   .container
     .row
       .col-md-12.col-sm-12.col-xs-12
-        = form_with url: "" do |f|
+        = form_tag url: "" do |f|
           .table-content.table-responsive
             table
               thead
@@ -28,7 +30,8 @@
                         = number_to_currency(product["price"], :unit =>"",precision:0)
                         |  VND
                     td.product-quantity
-                      = number_field_tag("qty", product["qty"])
+                      input type="number" name="number" class="product-quantity" value="#{product["qty"]}" id="quantity"/
+                      input type="hidden" name="ProductId" id="ProductId" value="#{product["id"]}" data-id="#{product["id"]}" /
                     td.product-subtotal
                       = number_to_currency(product["sub_total"], :unit =>"",precision:0)
                       |  VND
@@ -38,13 +41,29 @@
             .col-md-8.col-sm-7.col-xs-12
               .user-information
                 h2 User information
+              - if user_signed_in?
+                .col-md-7.col-sm-8
+                    .form-group
+                      label Email address
+                      = text_field_tag 'email', current_user.email, class: "form-control"
+                    .form-group
+                      label Name User 
+                      = text_field_tag 'name', current_user.name, class: "form-control"
                 .col-md-7.col-sm-8
                   .form-group
-                    label Email address
-                    = f.text_field :email, class: "form-control"
+                    label province
+                    = select_tag 'province', raw("<option>Chọn tỉnh/ thành phố</option>"), class: "custom-select"
+                .col-md-7.col-sm-8
                   .form-group
-                    label Name User 
-                    = f.text_field :name, class: "form-control"
+                    label district
+                    = select_tag 'district', '', class: "custom-select"
+                .col-md-7.col-sm-8
+                  .form-group
+                    label ward
+                    = select_tag 'ward', '', class: "custom-select"
+              - else
+                  .alert.alert-danger[role="alert"]
+                    | User not sign  
             .col-md-4.col-sm-5.col-xs-12    
               .cart_totals
                 h2 Cart Totals
@@ -55,7 +74,7 @@
                       td
                         ul#shipping_method
                           li
-                            = f.radio_button :shipping, :value => "1"
+                            = radio_button_tag :shipping, :value => "1"
                             label 
                             |  Free Shipping
                           li
@@ -64,11 +83,11 @@
                       td
                         ul#payment_method
                           li 
-                            = f.radio_button :payment, :value => "1"
+                            = radio_button_tag :payment, :value => "1"
                             label 
                               |  Payment on delivery
                           li
-                            = f.radio_button :payment_momo, :value => "2"
+                            = radio_button_tag :payment_momo, :value => "2"
                             label 
                               |  Payment Momo
                     tr.order-total

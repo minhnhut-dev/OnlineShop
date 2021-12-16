@@ -13,7 +13,7 @@
                         = image_tag "https://theme.hstatic.net/1000026716/1000440777/14/ak3.png?v=22219", alt: "infomation_user"
                         .header-right-description
                             span.onlineshop-text
-                                = current_user.email.split('@')[0]
+                                = current_user.name
                     = link_to destroy_user_session_path, :method => :delete, class: "onlineshop-right-item" do 
                         = image_tag "//theme.hstatic.net/1000026716/1000440777/14/ak2.png?v=19762", alt: "sign_out"
                         .header-right-description
