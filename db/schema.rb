@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 2021_12_10_091203) do
   end
 
   create_table "districts", force: :cascade do |t|
-    t.string "_name"
-    t.string "_prefix"
-    t.integer "_province_id"
+    t.string "name"
+    t.string "prefix"
+    t.integer "province_id"
     t.datetime "created_at", precision: 6
     t.datetime "updated_at", precision: 6
   end
@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 2021_12_10_091203) do
   end
 
   create_table "provinces", force: :cascade do |t|
-    t.string "_name"
-    t.string "_code"
+    t.string "name"
+    t.string "code"
     t.datetime "created_at", precision: 6
     t.datetime "updated_at", precision: 6
   end
@@ -89,10 +89,10 @@ ActiveRecord::Schema.define(version: 2021_12_10_091203) do
   end
 
   create_table "wards", force: :cascade do |t|
-    t.string "_name"
-    t.string "_prefix"
-    t.integer "_province_id"
-    t.integer "_district_id"
+    t.string "name"
+    t.string "prefix"
+    t.integer "province_id"
+    t.integer "district_id"
     t.datetime "created_at", precision: 6
     t.datetime "updated_at", precision: 6
   end

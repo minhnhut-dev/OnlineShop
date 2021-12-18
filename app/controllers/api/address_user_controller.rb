@@ -9,7 +9,7 @@ class Api::AddressUserController < ApplicationController
   end
 
   def load_district_by_province_id
-    @districts = District.where(_province_id: params[:id])
+    @districts = District.where(province_id: params[:id])
     render json:
     {
       message: 'Success',
@@ -18,7 +18,7 @@ class Api::AddressUserController < ApplicationController
   end
 
   def load_ward
-    @wards = Ward.where(_district_id: params[:id])
+    @wards = Ward.where(district_id: params[:id])
     render json:
     { 
       message: 'Success',

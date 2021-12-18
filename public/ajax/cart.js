@@ -7,7 +7,7 @@ console.log('connected')
     success: function(response){
       var html= "";
       response.data.forEach(function(element){
-        html+='<option value='+element.id+'>'+element._name+'</option>';
+        html+='<option value='+element.id+'>'+element.name+'</option>';
       });
       $('#province').html(html);
     },
@@ -22,7 +22,7 @@ console.log('connected')
         var data = response.data;
         var html = "";
         data.forEach(function(element){
-          html+= '<option value='+element.id+'>'+element._name+'</option>';
+          html+= '<option value='+element.id+'>'+element.name+'</option>';
         }); 
         $('#district').html(html);
       }
@@ -39,7 +39,7 @@ console.log('connected')
       success: function(response){
         var html= "";
         response.data.forEach(function(element){
-          html+= '<option value='+element.id+'>'+element._name+'</option>';
+          html+= '<option value='+element.id+'>'+element.name+'</option>';
         });
         $('#ward').html(html);
       },

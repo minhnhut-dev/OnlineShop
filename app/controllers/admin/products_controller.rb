@@ -28,9 +28,9 @@ class Admin::ProductsController < Admin::AdminController
        redirect_to admin_products_path , notice: 'Product was successfully delete'
     end
 
-    def update_multiple
+    def delete_multiple
         if params[:product_ids] != nil
-            @products = Product.find(params[:product_ids])
+            @products = Product.where(id: params[:product_ids])
             @products = Product.delete(@products)
             redirect_to admin_products_path
         else
