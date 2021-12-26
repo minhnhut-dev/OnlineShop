@@ -3686,7 +3686,7 @@ blockquote::before {
     text-transform: uppercase;
     white-space: nowrap;
 }
-.wc-proceed-to-checkout a {
+.wc-proceed-to-checkout button {
     background: #252525 none repeat scroll 0 0;
     color: #fff;
     display: inline-block;
@@ -3698,7 +3698,7 @@ blockquote::before {
     padding: 0 30px;
     text-transform: none;
 }
-.wc-proceed-to-checkout a:hover {
+.wc-proceed-to-checkout button:hover {
     background: #ff4136;
     color: #fff !important;
 }

@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
     before_action :initialize_session
     before_action :load_cart, only: [:index]
+    skip_before_action :verify_authenticity_token
     require_relative "#{Rails.root}/app/models/cart"
     def index
     end
@@ -22,10 +23,11 @@ class CartsController < ApplicationController
         session[:cart] = @remove_cart
         redirect_to carts_url
     end
-
+    
     protected
 
     def initialize_session
         session[:cart] ||= []
     end
+    
 end

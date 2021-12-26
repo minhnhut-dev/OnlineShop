@@ -1,10 +1,7 @@
 .cart-main-area.ptb--120.bg__white
-  / h1 
-  /  = @cart
   .container
     .row
       .col-md-12.col-sm-12.col-xs-12
-        = form_tag url: "" do |f|
           .table-content.table-responsive
             table
               thead
@@ -42,61 +39,83 @@
               .user-information
                 h2 User information
               - if user_signed_in?
-                .col-md-7.col-sm-8
+                form#form_user
+                  .col-md-7.col-sm-8
+                      .form-group
+                        label Email address
+                        = text_field_tag 'email', current_user.email, class: "form-control", required: true
+                        = hidden_field_tag 'id', current_user.id
+                      .form-group
+                        label Name User 
+                        = text_field_tag 'name', current_user.name, class: "form-control", required: true
+                  .col-md-7.col-sm-8
                     .form-group
-                      label Email address
-                      = text_field_tag 'email', current_user.email, class: "form-control"
+                      label province
+                      = select_tag 'province', raw("<option>Chọn tỉnh/ thành phố</option>"), class: "custom-select"
+                  .col-md-7.col-sm-8
                     .form-group
-                      label Name User 
-                      = text_field_tag 'name', current_user.name, class: "form-control"
-                .col-md-7.col-sm-8
-                  .form-group
-                    label province
-                    = select_tag 'province', raw("<option>Chọn tỉnh/ thành phố</option>"), class: "custom-select"
-                .col-md-7.col-sm-8
-                  .form-group
-                    label district
-                    = select_tag 'district', '', class: "custom-select"
-                .col-md-7.col-sm-8
-                  .form-group
-                    label ward
-                    = select_tag 'ward', '', class: "custom-select"
+                      label district
+                      = select_tag 'district', '', class: "custom-select"
+                  .col-md-7.col-sm-8
+                    .form-group
+                      label ward
+                      = select_tag 'ward', '', class: "custom-select"
+                  .col-md-7.col-sm-8
+                    .form-group
+                      label address 
+                      = text_field_tag 'address', current_user.address, class: "form-control"
+                  button.btn.btn-primary#save
+                      | Save
               - else
                   .alert.alert-danger[role="alert"]
                     | User not sign  
+                  
             .col-md-4.col-sm-5.col-xs-12    
-              .cart_totals
-                h2 Cart Totals
-                table
-                  tbody
-                    tr.shipping
-                      th Shipping
-                      td
-                        ul#shipping_method
-                          li
-                            = radio_button_tag :shipping, :value => "1"
-                            label 
-                            |  Free Shipping
-                          li
-                    tr.payment
-                      th Payment 
-                      td
-                        ul#payment_method
-                          li 
-                            = radio_button_tag :payment, :value => "1"
-                            label 
-                              |  Payment on delivery
-                          li
-                            = radio_button_tag :payment_momo, :value => "2"
-                            label 
-                              |  Payment Momo
-                    tr.order-total
-                      th Total 
-                      td
-                        strong
-                          span.amount
-                            = number_to_currency(@total, :unit =>"",precision:0)
-                            | VNĐ
-                .wc-proceed-to-checkout
-                  = link_to ""
-                    | Proceed to pay
+              = form_tag url: "" do |f|
+                .cart_totals
+                  h2 Cart Totals
+                  table
+                    tbody
+                      tr.shipping
+                        th Shipping
+                        td
+                          ul#shipping_method
+                            li
+                              = radio_button_tag :shipping, :value => "1"
+                              label 
+                              |  Free Shipping
+                            li
+                      tr.payment
+                        th Payment 
+                        td
+                          ul#payment_method
+                            li 
+                              = radio_button_tag :payment, :value => "1"
+                              label 
+                                |  Payment on delivery
+                            li
+                              = radio_button_tag :payment_momo, :value => "2"
+                              label 
+                                |  Payment Momo
+                      tr.order-total
+                        th Total 
+                        td
+                          strong
+                            span.amount
+                              = number_to_currency(@total, :unit =>"",precision:0)
+                              | VNĐ
+                  .wc-proceed-to-checkout
+                    = button_tag 'Process to pay', type: 'submit'
+    .modal role="dialog" tabindex="-1"
+      .modal-dialog role="document" 
+        .modal-content
+          .modal-header
+            h5.modal-title Notification
+            button.close aria-label="Close" data-dismiss="modal" type="button" 
+              span aria-hidden="true"  &times;
+          .modal-body
+            .d-flex
+              i.fas.fa-exclamation-circle[style="line-height: 20px"]
+              p#notification[style="margin-left:10px;"]  
+          .modal-footer
+            button.btn.btn-secondary#close data-dismiss="modal" type="button"  Close
