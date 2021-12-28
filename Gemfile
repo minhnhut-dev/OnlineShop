@@ -54,6 +54,8 @@ group :development do
   gem 'pry', '~> 0.14.1'
   gem 'awesome_print', '~> 1.9', '>= 1.9.2'
   gem 'activestorage', '~> 6.1', '>= 6.1.4.1'
+  gem 'will_paginate', '~> 3.3', '>= 3.3.1'
+  gem 'will_paginate-bootstrap4'
 end
 
 group :test do

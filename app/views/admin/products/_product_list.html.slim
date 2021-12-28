@@ -14,11 +14,35 @@
           span.badge.badge-success Active 
         - else
           span.badge.badge-danger Deactive
-      td 
+      td
         .btn-group
           = link_to admin_product_path(product) do 
             button.btn.btn-warning[data-toggle="tooltip" data-placement="top" title="Chỉnh sửa"]
               i.fas.fa-edit
-          = link_to "/admin/products/#{product.id}", method: :delete do
-            button.btn.btn-danger[title="xóa"]
-              i.far.fa-trash-alt
+          button.btn.btn-danger[title="xóa" type="button" data-toggle="modal" data-target="#modalViewProduct#{product.id}"]
+            i.fas.fa-eye
+          .modal.fade.custom-modal[tabindex="-1" aria-labelledby="modalViewProduct" aria-hidden="true" id="modalViewProduct#{product.id}"]
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  h5.modal-title#modalViewProduct Information Product
+                  button.close[data-dismiss="modal" aria-label="Close"]
+                    span[aria-hidden="true"]
+                .modal-body
+                  .row
+                    .col-lg-12
+                      .form-group
+                        label Full name Product
+                        input.form-control type="text" value="#{product.name}" /
+                  .row
+                    .col-lg-6
+                      .form-group
+                        - @price = number_to_currency(product.price, :unit => "",precision: 0)
+                        label Price                        
+                        input.form-control type="text" value="#{@price}VNĐ" /
+                    .col-lg-6
+                      .form-group
+                        label Category
+                        input.form-control type="text" value="#{product.category.name}" /
+      td
+        = check_box_tag "product_ids[]", product.id 
