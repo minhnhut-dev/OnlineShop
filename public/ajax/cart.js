@@ -49,18 +49,28 @@ console.log('connected')
     });
   });
 
+  $.validator.addMethod("customemail", 
+  function(value, element) {
+    return value.match(/^[a-zA-Z0-9_\.%\+\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}$/);
+  }, 
+  "Your E-mail is wrong!"
+);
+
   $('#form_user').validate({
     rules: {
-      email: 'required',
+      email: {
+        required: true,
+        customemail: true,
+      },
       name :'required',
-      address: 'required'
+      address: 'required',
     },
     messages:{
-      email: "Please enter your email",
       name: "Please enter your name",
       address: "Please enter your address",
-    }
+    },
   });
+
   $('#save').click(function(e){
     e.preventDefault();
     var id= $('#id').val();
@@ -89,9 +99,14 @@ console.log('connected')
         data: data,
         dataType: "json",
         success: function (response) {
-          $('.modal').show();
+          console.log(response);
+         $('.modal').show();
          $('#notification').html(response.message);
          $('#address').val(response.data.address);
+         
+        },
+        error: function(error) {
+          console.log('error:', error.response.message);
         }
       });
     }
@@ -99,5 +114,5 @@ console.log('connected')
 
   $('#close').click(function () {
     $(this).closest('.modal').fadeOut();  
-  });
+  }); 
 });
