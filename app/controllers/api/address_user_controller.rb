@@ -26,3 +26,4 @@ class Api::AddressUserController < ApplicationController
     }
   end
 end
+

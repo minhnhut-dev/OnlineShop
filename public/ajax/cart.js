@@ -135,3 +135,4 @@ function updatecart(id) {
     }
   });
 }
+
