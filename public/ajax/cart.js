@@ -115,4 +115,24 @@ console.log('connected')
   $('#close').click(function () {
     $(this).closest('.modal').fadeOut();  
   }); 
+
+
 });
+function updatecart(id) {
+  var data= ($('#updatecart'+id).serialize());
+  $.ajax({
+    type: "POST",
+    url: "/api/update_quantity",
+    data: data,
+    dataType: "json",
+    success: function (response) {
+      console.log(response);
+      var sub_total= response.data;
+      sub_total.forEach(function(element){
+        var currency= element.total;
+        currency = currency.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+        $('#amount').html(currency);
+      })
+    }
+  });
+}

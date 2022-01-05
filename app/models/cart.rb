@@ -10,7 +10,16 @@ end
           @cart = update_cart(id,qty)
         end
     end
-
+    def update_quantity(id,qty)
+      @cart.each do |product|
+        if product["id"] == id
+            product["qty"] = qty 
+            product ["sub_total"] =  sub_total(product["qty"], product["price"])
+            product ["total"] = total
+        end
+      end
+    end
+    
       def sub_total(qty,price)
         qty.to_i * price.to_i
       end

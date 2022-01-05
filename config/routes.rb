@@ -22,5 +22,6 @@ Rails.application.routes.draw do
     get '/district/:id', to: 'address_user#load_district_by_province_id'
     get '/ward/:id', to: 'address_user#load_ward'
     post '/update_user', to: 'users#edit_user'
+    post '/update_quantity', to: 'carts#update_cart'
   end
 end
