@@ -26,7 +26,7 @@ class CartsController < ApplicationController
     
     protected
 
-    def initialize_session
+    def initialize_session  
         session[:cart] ||= []
     end
     
