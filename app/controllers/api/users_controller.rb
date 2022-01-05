@@ -19,4 +19,3 @@ class Api::UsersController < ApplicationController
     params.permit(:email, :name, :address)
   end
 end
-  
