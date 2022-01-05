@@ -115,8 +115,6 @@ console.log('connected')
   $('#close').click(function () {
     $(this).closest('.modal').fadeOut();  
   }); 
-
-
 });
 function updatecart(id) {
   var data= ($('#updatecart'+id).serialize());
