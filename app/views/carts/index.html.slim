@@ -2,20 +2,19 @@
   .container
     .row
       .col-md-12.col-sm-12.col-xs-12
-          .table-content.table-responsive#list_item
-              table
+          .table-content.table-responsive
+              table#list_item
                 thead
                   tr
                     th.product-thumbnail Image
                     th.product-name Product 
                     th.product-price Price
                     th.product-quantity Quantity
-                    th.product-subtotal Total
+                    th.product-subtotal Subtotal
                     th.product-remove Remove
                 tbody
                     - @cart.each do |product|
                       - @img = Product.find(product["id"]).image
-                      - @subtotal = product["qty"].to_i * product["price"].to_i
                       tr 
                         td.product-thumbnail
                           = link_to "#" do
@@ -30,9 +29,9 @@
                         td.product-quantity
                           form[id="updatecart#{product['id']}"]
                             input type="number" name="quantity" class="product-quantity" value="#{product["qty"]}" id="quantity" onchange="updatecart(#{product['id']})" onkeyup="updatecart(#{product['id']})"/
-                            input type="hidden" name="id" id="ProductId" value="#{product["id"]}"  /
-                        td.product-subtotal
-                          = number_to_currency(product["sub_total"], :unit =>"",precision:0)
+                            input type="hidden" name="id" id="ProductId" value="#{product["id"]}" /
+                        td.product-subtotal[id="subtotal#{product['id']}"]
+                          = number_to_currency(sub_total_price(product['price'],product['qty']), :unit =>"",precision:0)
                           |  VND
                         td.product-remove
                           a#remove_from_cart[href="/products/remove_from_cart/#{product["id"]}"] X
@@ -100,7 +99,7 @@
                               label 
                                 |  Payment Momo
                       tr.order-total
-                        th Total 
+                        th Total
                         td
                           strong
                             span#amount

@@ -125,14 +125,14 @@ function updatecart(id) {
     data: data,
     dataType: "json",
     success: function (response) {
-      console.log(response);
-      var sub_total= response.data;
-      sub_total.forEach(function(element){
-        var currency= element.total;
-        currency = currency.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
-        $('#amount').html(currency);
+      console.log('data:', response);
+      var data= response.data;
+      var total= 0;
+      data.forEach(function(element){
+        total+= element.sub_total;
       })
+      total = total.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+        $('#amount').html(total);
     }
   });
 }
-

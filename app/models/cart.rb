@@ -15,7 +15,6 @@ end
         if product["id"] == id
             product["qty"] = qty 
             product ["sub_total"] =  sub_total(product["qty"], product["price"])
-            product ["total"] = total
         end
       end
     end
