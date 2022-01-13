@@ -1,3 +1,5 @@
+import $ from "jquery";
+import "jquery-validation";
 $(document).ready(function() {
   $.ajaxSetup({
     headers: {
@@ -18,6 +20,7 @@ console.log('connected')
       },
     });
    $('#province').change(function() {
+     
     var province = $(this).val();
      $.ajax({
       url: '/api/district/'+ province ,
@@ -116,3 +119,23 @@ console.log('connected')
     $(this).closest('.modal').fadeOut();  
   }); 
 });
+
+window.updatecart= function (id) {  
+  var data= ($('#updatecart'+id).serialize());
+  $.ajax({
+    type: "POST",
+    url: "/api/update_quantity",
+    data: data,
+    dataType: "json",
+    success: function (response) {
+      console.log('data:', response);
+      var data= response.data;
+      var total= 0;
+      data.forEach(function(element){
+        total+= element.sub_total;
+      });
+      total = total.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+        $('#amount').html(total);
+    }
+  });
+}

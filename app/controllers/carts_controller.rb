@@ -3,6 +3,7 @@ class CartsController < ApplicationController
     before_action :load_cart, only: [:index]
     skip_before_action :verify_authenticity_token
     require_relative "#{Rails.root}/app/models/cart"
+
     def index
     end
 
