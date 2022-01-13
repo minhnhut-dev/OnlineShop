@@ -1,3 +1,5 @@
+import $ from "jquery";
+import "jquery-validation";
 $(document).ready(function() {
   $.ajaxSetup({
     headers: {
@@ -18,6 +20,7 @@ console.log('connected')
       },
     });
    $('#province').change(function() {
+     
     var province = $(this).val();
      $.ajax({
       url: '/api/district/'+ province ,
@@ -117,7 +120,7 @@ console.log('connected')
   }); 
 });
 
-function updatecart(id) {
+window.updatecart= function (id) {  
   var data= ($('#updatecart'+id).serialize());
   $.ajax({
     type: "POST",
@@ -130,7 +133,7 @@ function updatecart(id) {
       var total= 0;
       data.forEach(function(element){
         total+= element.sub_total;
-      })
+      });
       total = total.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
         $('#amount').html(total);
     }

@@ -56,6 +56,7 @@ group :development do
   gem 'activestorage', '~> 6.1', '>= 6.1.4.1'
   gem 'will_paginate', '~> 3.3', '>= 3.3.1'
   gem 'will_paginate-bootstrap4'
+
 end
 
 group :test do

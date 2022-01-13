@@ -1,5 +1,6 @@
 module ApplicationHelper
-  def sub_total_price(price,quantity)
-    subtotal= price*quantity
-    end
+  
+  def sub_total_price(price, quantity)
+    price * quantity
+  end
 end
