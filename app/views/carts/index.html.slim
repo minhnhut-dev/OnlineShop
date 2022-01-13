@@ -40,7 +40,7 @@
               .user-information
                 h2 User information
               - if user_signed_in?
-                form#form_user
+                form#form_user[method="POST"]
                   .col-md-7.col-sm-8
                       .form-group
                         label Email address
