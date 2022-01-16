@@ -23,5 +23,6 @@ Rails.application.routes.draw do
     get '/ward/:id', to: 'address_user#load_ward'
     post '/update_user', to: 'users#edit_user'
     post '/update_quantity', to: 'carts#update_cart'
+    post '/remove_item', to: 'carts#remove_from_cart'
   end
 end

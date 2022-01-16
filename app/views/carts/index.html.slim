@@ -1,7 +1,7 @@
 .cart-main-area.ptb--120.bg__white
   .container
     .row
-      .col-md-12.col-sm-12.col-xs-12
+      .col-md-12.col-sm-12.col-xs-12#added
           .table-content.table-responsive
               table#list_item
                 thead
@@ -15,7 +15,7 @@
                 tbody
                     - @cart.each do |product|
                       - @img = Product.find(product["id"]).image
-                      tr 
+                      tr[id="product#{product["id"]}"] 
                         td.product-thumbnail
                           = link_to "#" do
                             = image_tag(@img)
@@ -34,7 +34,10 @@
                           = number_to_currency(sub_total_price(product['price'],product['qty']), :unit =>"",precision:0)
                           |  VND
                         td.product-remove
-                          a#remove_from_cart[href="/products/remove_from_cart/#{product["id"]}"] X
+                          form[id="remove_cart#{product['id']}"]
+                            input type="hidden" name="id" class="id_cart" value="#{product["id"]}" /
+                            a#remove_from_cart role="button" onclick="remove_cart(#{product['id']})"
+                              | X
           .row
             .col-md-8.col-sm-7.col-xs-12
               .user-information
