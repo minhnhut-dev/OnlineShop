@@ -106,7 +106,6 @@ console.log('connected')
          $('.modal').show();
          $('#notification').html(response.message);
          $('#address').val(response.data.address);
-         
         },
         error: function(error) {
           console.log('error:', error.response.message);
@@ -114,7 +113,7 @@ console.log('connected')
       });
     }
   });
-
+ 
   $('#close').click(function () {
     $(this).closest('.modal').fadeOut();  
   }); 
@@ -137,5 +136,20 @@ window.updatecart= function (id) {
       total = total.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
         $('#amount').html(total);
     }
+  });
+}
+
+window.remove_cart= function (id) {
+  var data= ($('#remove_cart'+id).serialize());
+  $.ajax({
+    type: "POST",
+    url: "/api/remove_item",
+    data: data,
+    dataType: "json",
+    success: function (response) {
+      $('#product'+id).remove();
+      console.log('data: ', response);
+      $('.online-shop-number').text(response.data.length);
+    },
   });
 }
