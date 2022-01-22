@@ -20,5 +20,4 @@ require 'json'
 @payments = Payment.create([
   { name: "Thanh toán khi nhận hang", status: 1},
   { name: "Momo", status: 1}
-
 ])
