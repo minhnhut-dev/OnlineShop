@@ -84,11 +84,13 @@ console.log('connected')
     var district = $('#district option:selected').text();
     var ward = $('#ward option:selected').text();
     var select = address+', '+'xã '+ward +','+' huyện '+ district+ ', '+ province;
+    var phone= $('#phone').val();
     var data= {
       id: id,
       name: name,
       email: email,
-      address: select
+      address: select,
+      phone: phone
     };
     if(!$('#form_user').valid())
     {
@@ -117,8 +119,43 @@ console.log('connected')
   $('#close').click(function () {
     $(this).closest('.modal').fadeOut();  
   }); 
-});
 
+  $('#payment_1').click(function() {
+    $('#payment_momo_2').prop('checked', false);
+  });
+
+  $('#payment_momo_2').click(function() {
+    $('#payment_1').prop('checked', false);
+  });
+  
+  // default shipping is Free Shipping
+  $('#shipping_1').prop('checked', true);
+
+  $('#order').click(function () {
+    var user_id= $('#id').val();
+    var payment_id= $('#payment_1').val();
+    var date_order= new Date().toLocaleString();
+    var data= {
+      user_id: user_id,
+      payment_id: payment_id,
+      orderdate: date_order
+    }
+    $.ajax({
+      type: "POST",
+      url: "/api/create_order",
+      data: data,
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+        var url = "http://127.0.0.1:3000/order-detail";
+        window.location.href= url;
+      },
+      error: function(err) {
+        console.log(err.response.message);
+      }
+    });
+  })
+});
 window.updatecart= function (id) {  
   var data= ($('#updatecart'+id).serialize());
   $.ajax({
@@ -127,7 +164,6 @@ window.updatecart= function (id) {
     data: data,
     dataType: "json",
     success: function (response) {
-      console.log('data:', response);
       var data= response.data;
       var total= 0;
       data.forEach(function(element){
@@ -147,9 +183,9 @@ window.remove_cart= function (id) {
     data: data,
     dataType: "json",
     success: function (response) {
+      var quantiy_item_cart= response.data.length;
       $('#product'+id).remove();
-      console.log('data: ', response);
-      $('.online-shop-number').text(response.data.length);
+      $('.online-shop-number').text(quantiy_item_cart);
     },
   });
 }

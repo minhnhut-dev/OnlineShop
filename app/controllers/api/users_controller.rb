@@ -1,13 +1,13 @@
 class Api::UsersController < ApplicationController
   def edit_user
-    @user= User.find(params[:id])
+    @user = User.find(params[:id])
       if @user.update(user_params)
           render json: {
             message: 'User updated',
             data: @user
           }
         else
-          render json: { 
+          render json: {
               message: 'Not updated',
               data: @user
             }
@@ -16,6 +16,6 @@ class Api::UsersController < ApplicationController
   protected
 
   def user_params
-    params.permit(:email, :name, :address)
+    params.permit(:email, :name, :address, :phone)
   end
 end

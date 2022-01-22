@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :carts, only: [:index]
   post '/add_to_cart/:id', to: 'carts#add_to_cart'
   get '/products/remove_from_cart/:id', to: 'carts#remove_from_cart'
+  get '/order-detail', to: 'order#index'
   namespace :admin do
     root to: "dashboard#index"
     resources :products, only: [:index, :create, :show, :update, :destroy]
@@ -24,5 +25,6 @@ Rails.application.routes.draw do
     post '/update_user', to: 'users#edit_user'
     post '/update_quantity', to: 'carts#update_cart'
     post '/remove_item', to: 'carts#remove_from_cart'
+    post '/create_order', to: 'order#create_order'
   end
 end
