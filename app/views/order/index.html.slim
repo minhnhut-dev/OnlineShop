@@ -9,7 +9,8 @@
       span.status
         | Giao hàng thành công
     .created-date
-      | Ngày đặt hàng: 1/1/2022
+      | Ngày đặt hàng:  
+      = (session[:order]["orderdate"]).to_date.strftime("%d/%m/%Y")
     .col-lg-12.d-flex#user_information
       .col-lg-6
         label
@@ -44,7 +45,7 @@
               th.product-quantity Quantity
               th.product-subtotal Subtotal
           tbody
-            -  @order_detail.each do |item|
+            -  @order.each do |item|
               - @image = Product.find(item.product.id).image
               tr
                   td.product-thumbnail
