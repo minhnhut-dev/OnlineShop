@@ -1,0 +1,63 @@
+.container
+  .row 
+    .heading
+      span
+        | Thông tin đơn hàng#
+        = session[:order]["id"]
+      span.split
+        | -
+      span.status
+        | Giao hàng thành công
+    .created-date
+      | Ngày đặt hàng:  
+      = (session[:order]["orderdate"]).to_date.strftime("%d/%m/%Y")
+    .col-lg-12.d-flex#user_information
+      .col-lg-6
+        label
+          | Tên Người nhận: 
+        .input-group.col-md-7
+          - @name = User.find(session[:order]["user_id"]).name
+          input.form-control[disabled type="text" value="#{@name}" ] 
+        label
+          | Số điện thoại: 
+        .input-group.col-md-7
+          - @phone = User.find(session[:order]["user_id"]).phone
+          input.form-control[disabled type="text" value="#{@phone}"] /
+      .col-lg-6 
+        label
+          | Email:
+        - @email = User.find(session[:order]["user_id"]).email
+        .input-group.col-md-7
+          input.form-control[disabled type="text" value="#{@email}"] /
+        label
+          | Địa chỉ giao hàng:
+        - @address = User.find(session[:order]["user_id"]).address
+        .input-group.col-md-7
+           input.form-control[disabled type="text" value="#{@address}"] /
+    .col-md-12.col-sm-12.col-xs-12.list_item
+      .table-content.table-responsive
+        table
+          thead
+            tr
+              th.product-thumbnail Image
+              th.product-name Product 
+              th.product-price Price
+              th.product-quantity Quantity
+              th.product-subtotal Subtotal
+          tbody
+            -  @order.each do |item|
+              - @image = Product.find(item.product.id).image
+              tr
+                  td.product-thumbnail
+                    = image_tag(@image)
+                  td.product-name
+                    = item.product.name
+                  td.product-price
+                    span.amount
+                      = number_to_currency(item.unitprice, :unit =>"",precision:0)
+                      | VND
+                  td.product-quantity
+                    = item.quantity
+                  td.product-subtotal
+                    = number_to_currency(item.intomoney, :unit =>"",precision:0)
+                    | VND
