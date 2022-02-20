@@ -3,7 +3,7 @@
     .row
       .col-md-12.col-sm-12.col-xs-12
           .table-content.table-responsive
-              table#list_item
+              table
                 thead
                   tr
                     th.product-thumbnail Image
@@ -15,7 +15,7 @@
                 tbody
                     - @cart.each do |product|
                       - @img = Product.find(product["id"]).image
-                      tr 
+                      tr[id="product#{product["id"]}"] 
                         td.product-thumbnail
                           = link_to "#" do
                             = image_tag(@img)
@@ -34,7 +34,10 @@
                           = number_to_currency(sub_total_price(product['price'],product['qty']), :unit =>"",precision:0)
                           |  VND
                         td.product-remove
-                          a#remove_from_cart[href="/products/remove_from_cart/#{product["id"]}"] X
+                          form[id="remove_cart#{product['id']}"]
+                            input type="hidden" name="id" class="id_cart" value="#{product["id"]}" /
+                            a#remove_from_cart role="button" onclick="remove_cart(#{product['id']})"
+                              | X
           .row
             .col-md-8.col-sm-7.col-xs-12
               .user-information
@@ -49,6 +52,10 @@
                       .form-group
                         label Name User 
                         = text_field_tag 'name', current_user.name, class: "form-control", required: true
+                  .col-md-7.col-sm-8
+                    .form-group
+                      label Phone 
+                      = text_field_tag 'phone', current_user.phone, class: "form-control"
                   .col-md-7.col-sm-8
                     .form-group
                       label province
@@ -82,7 +89,7 @@
                         td
                           ul#shipping_method
                             li
-                              = radio_button_tag :shipping, :value => "1"
+                              = radio_button_tag :shipping, 1
                               label 
                               |  Free Shipping
                             li
@@ -91,13 +98,13 @@
                         td
                           ul#payment_method
                             li 
-                              = radio_button_tag :payment, :value => "1"
+                              = radio_button_tag :payment, 1
                               label 
-                                |  Payment on delivery
+                              |  Payment on delivery
                             li
-                              = radio_button_tag :payment_momo, :value => "2"
+                              = radio_button_tag :payment_momo, 2
                               label 
-                                |  Payment Momo
+                              |  Payment Momo
                       tr.order-total
                         th Total
                         td
@@ -106,7 +113,8 @@
                               = number_to_currency(@total, :unit =>"",precision:0)
                               | VNĐ
                   .wc-proceed-to-checkout
-                    = button_tag 'Process to pay', type: 'submit'
+                    = hidden_field_tag 'total', @total
+                    = button_tag 'Process to pay', type: 'button', id:'order'
     .modal role="dialog" tabindex="-1"
       .modal-dialog role="document" 
         .modal-content

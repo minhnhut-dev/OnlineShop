@@ -6,7 +6,10 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
-import "channels"
+import "channels" 
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
+window.Swal = Swal;
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
