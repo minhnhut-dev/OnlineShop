@@ -13,10 +13,10 @@ class CartsController < ApplicationController
         redirect_to carts_url
     end
 
-    def load_cart      
-        @cart = session[:cart]
-        @total = Cart.new(@cart).total
-        @provinces = Province.all
+    def load_cart
+      @cart = session[:cart]
+      @total = Cart.new(@cart).total
+      @provinces = Province.all
     end
 
     def remove_from_cart
@@ -27,7 +27,7 @@ class CartsController < ApplicationController
     
     protected
 
-    def initialize_session  
+    def initialize_session
         session[:cart] ||= []
     end
     

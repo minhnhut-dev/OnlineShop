@@ -76,6 +76,7 @@ console.log('connected')
 
   $('#save').click(function(e){
     e.preventDefault();
+    
     var id= $('#id').val();
     var name = $('#name').val();
     var email = $('#email').val();
@@ -92,28 +93,44 @@ console.log('connected')
       address: select,
       phone: phone
     };
+    
     if(!$('#form_user').valid())
     {
       $('.error').css('color', 'red');
-    }    
+    }
     else
     {
-      $.ajax({
-        type: "post",
-        url: "/api/update_user",
-        data: data,
-        dataType: "json",
-        success: function (response) {
-          console.log(response);
-         $('.modal').show();
-         $('#notification').html(response.message);
-         $('#address').val(response.data.address);
-        },
-        error: function(error) {
-          console.log('error:', error.response.message);
+      Swal.fire({
+        title: 'Notification',
+        text: 'Do you want to save',
+        icon: 'question',
+        confirmButtonText: 'Save',
+        showCancelButton: true,
+      }).then((result) => {
+        if(result.isConfirmed)
+        {
+            $.ajax({
+              type: "post",
+              url: "/api/update_user",
+              data: data,
+              dataType: "json",
+              success: function (response) {
+                Swal.fire({
+                  title: 'Success',
+                  text: 'Save information success',
+                  icon: 'success',
+                  confirmButtonText: 'OK',
+                })
+               $('#address').val(response.data.address);
+              },
+              error: function(error) {
+                console.log('error:', error.response.message);
+              }
+            });
         }
       });
     }
+  
   });
  
   $('#close').click(function () {
@@ -147,11 +164,27 @@ console.log('connected')
       dataType: "json",
       success: function (response) {
         console.log(response);
-        var url = "http://127.0.0.1:3000/order-detail";
-        window.location.href= url;
+        Swal.fire({
+          title: 'Success',
+          text: 'Chúc mừng bạn đã đặt hàng thành công',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            var url = "http://127.0.0.1:3000/order-detail";
+            window.location.href= url;
+          }       
+        });
+      
       },
-      error: function(err) {
-        console.log(err.response.message);
+      error: function(request, status, error) {
+        var err = JSON.parse(request.responseText);
+        Swal.fire({
+          title: 'error',
+          text: err.message,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
       }
     });
   })

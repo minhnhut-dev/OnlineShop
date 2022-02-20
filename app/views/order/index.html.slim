@@ -13,27 +13,24 @@
       = (session[:order]["orderdate"]).to_date.strftime("%d/%m/%Y")
     .col-lg-12.d-flex#user_information
       .col-lg-6
+        - @information = Order.find(session[:order]["user_id"]).user
         label
           | Tên Người nhận: 
         .input-group.col-md-7
-          - @name = User.find(session[:order]["user_id"]).name
-          input.form-control[disabled type="text" value="#{@name}" ] 
+          input.form-control[disabled type="text" value="#{@information.name}" ] 
         label
           | Số điện thoại: 
         .input-group.col-md-7
-          - @phone = User.find(session[:order]["user_id"]).phone
-          input.form-control[disabled type="text" value="#{@phone}"] /
+          input.form-control[disabled type="text" value="#{@information.phone}"] /
       .col-lg-6 
         label
           | Email:
-        - @email = User.find(session[:order]["user_id"]).email
         .input-group.col-md-7
-          input.form-control[disabled type="text" value="#{@email}"] /
+          input.form-control[disabled type="text" value="#{@information.email}"] /
         label
           | Địa chỉ giao hàng:
-        - @address = User.find(session[:order]["user_id"]).address
         .input-group.col-md-7
-           input.form-control[disabled type="text" value="#{@address}"] /
+           input.form-control[disabled type="text" value="#{@information.address}"] /
     .col-md-12.col-sm-12.col-xs-12.list_item
       .table-content.table-responsive
         table

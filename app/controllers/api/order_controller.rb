@@ -3,11 +3,12 @@ class Api::OrderController < ApplicationController
   before_action :initialize_session
   def create_order
     @lineItem= session[:cart]
-    @total= @lineItem.inject(0) {|sum, e| sum += e["sub_total"].to_i}
-    @order = Order.new(order_params)
-    @order.total = @total
-    if @order.save
-      @lineItem.each do |item|
+    if !@lineItem.empty?
+      @total = @lineItem.inject(0) {|sum, e| sum += e["sub_total"].to_i}
+      @order = Order.new(order_params)
+      @order.total = @total
+      if @order.save
+        @lineItem.each do |item|
           @order_details = OrderDetail.new(order_detail_params)
           @order_details.order_id = @order.id
           @order_details.product_id = item['id']
@@ -15,23 +16,29 @@ class Api::OrderController < ApplicationController
           @order_details.unitprice = item['price']
           @order_details.intomoney = item['price'].to_i * item['qty'].to_i
           @order_details.save
+        end
+        session[:cart].clear
+        session[:order] = @order
+        ActionCable.server.broadcast 'room_channel', order: @order
+        render json: {
+          data: @order
+        }, status: 200
+      else
+        render json: {
+          message: "Create order failed"
+        }, status: 500
       end
-      session[:cart].clear
-      session[:order] = @order
-      render json: {
-        data: @order
-      }, status: 200
     else
       render json: { 
-        message: "Create order failed"
-      }, status: 500
+        message: "Chưa có sản phẩm nào được chọn!"
+      }, status: 400
     end
   end
 
   private
 
   def order_params
-    params.permit(:user_id, :payment_id, :total, :orderdate, :order_status_id).merge(order_status_id: 1, orderdate: DateTime.now)
+    params.permit(:user_id, :payment_id, :total, :orderdate, :order_status_id).merge(order_status_id: 1, orderdate: DateTime.now.change(:offset => "UTC +7"))
   end
 
   def order_detail_params
@@ -40,7 +47,7 @@ class Api::OrderController < ApplicationController
 
   protected
 
-  def initialize_session  
+  def initialize_session
     session[:order] ||= []
   end
 end
