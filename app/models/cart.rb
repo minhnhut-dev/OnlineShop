@@ -46,9 +46,9 @@ class Cart
   def update_cart(id,qty)
      @cart.each do |product|
       if product["id"] == id
-          product["qty"] = product["qty"].to_i + qty 
-          product ["sub_total"] =  sub_total(product["qty"], product["price"])
-          product ["total"] = total
+         product["qty"] = product["qty"].to_i + qty 
+         product ["sub_total"] =  sub_total(product["qty"], product["price"])
+         product ["total"] = total
       end
     end
   end
