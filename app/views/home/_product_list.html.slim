@@ -8,6 +8,7 @@ section.text-center.mb-4
                         .view-overlay
                             = link_to product_path(product), method: :get do
                                 = image_tag(product.image)
+                                input type="hidden" name="haha" value="#{url_for(product.image)}"/
                         .card-body.text-center
                             = link_to product_path(product), class: "grey-text"
                                 h5

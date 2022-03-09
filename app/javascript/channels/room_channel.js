@@ -12,6 +12,7 @@ consumer.subscriptions.create("RoomChannel", {
 
   received(data) {
     this.notification_order(data);
+
     // Called when there's incoming data on the websocket for this channel
   },
   notification_order(data){
@@ -20,6 +21,6 @@ consumer.subscriptions.create("RoomChannel", {
     $('.myAlert-message').html(message);
     setTimeout(() => {
       $('#myAlert').removeClass('show');
-    }, 5000);
+    }, 2000);
   }
 });

@@ -2,8 +2,8 @@
     nav.navbar.navbar-expand-lg.navbar-light.d-flex.header
         = link_to root_path, class: "navbar-brand" do
             = image_tag "logo-nbstore.png", alt: "Logo"
-        = form_with url: "", class: "form-inline my-2 my-lg-0" do |f|
-            = f.text_field :search, class: "form-control mr-sm-2 _input_search", type: "search", placeholder: "Bạn cần tìm gì?"
+        = form_with url: "", class: "form-inline my-2 my-lg-0", method: "get" do |f|
+            = f.text_field :search, class: "form-control mr-sm-2 _input_search" , placeholder: "Bạn cần tìm gì?"
             button.btn.btn-primary._btn_search
                 i.fas.fa-search
         .pdl0.fl1

@@ -1,177 +1,233 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.header{
-    min-height: 64px;
-    background: #f1f0f1 !important;
+.header {
+  min-height: 64px;
+  background: #f1f0f1 !important;
 }
-.header  img{
-    height: 64px;
+.header img {
+  height: 64px;
 }
-._input_search{
-    position: relative;
-    width: 500px !important;
+._input_search {
+  position: relative;
+  width: 500px !important;
 }
 ._btn_search {
-    margin-left: -8px;
-    height: 38px;
+  margin-left: -8px;
+  height: 38px;
 }
 .fl1 {
-    flex: 1;
+  flex: 1;
 }
 .pdl0 {
-    padding-left: 0;
+  padding-left: 0;
 }
-.onlineshop-right-top-block{
-    display: flex;
-    align-items: center;
+.onlineshop-right-top-block {
+  display: flex;
+  align-items: center;
 }
-.onlineshop-right-top-block .onlineshop-right-item{
-    display: inline-flex;
-    margin-left:30px;
+.onlineshop-right-top-block .onlineshop-right-item {
+  display: inline-flex;
+  margin-left: 30px;
 }
-.onlineshop-right-item >img{
-    max-width: 24px;
-    margin-right: 8px;
-    max-height: 25px;
+.onlineshop-right-item > img {
+  max-width: 24px;
+  margin-right: 8px;
+  max-height: 25px;
 }
-.onlineshop-right-top-block .onlineshop-right-item .header-right-description .onlineshop-text{
-    color: #010101;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 11px;
+.onlineshop-right-top-block
+  .onlineshop-right-item
+  .header-right-description
+  .onlineshop-text {
+  color: #010101;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
 }
-.onlineshop-right-top-block >a:hover {
-    text-decoration: none;
+.onlineshop-right-top-block > a:hover {
+  text-decoration: none;
 }
-.online-shop-number
-{
-    position: absolute;
-    top: -4px;
-    left: -5px;
-    z-index: 20;
-    background: #ea1c00;
-    color: #fff;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    width: 18px;
-    height: 18px;
-    text-align: center;
-    font-size: 9px;
-    line-height: 18px;
+.online-shop-number {
+  position: absolute;
+  top: -4px;
+  left: -5px;
+  z-index: 20;
+  background: #ea1c00;
+  color: #fff;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  font-size: 9px;
+  line-height: 18px;
 }
-.onlineshop-right-item.cart{
-    position: relative;
+.onlineshop-right-item.cart {
+  position: relative;
 }
 // .banner {
 //    width: 100%;
 //    height:100%
 // }
-.card{
-    box-shadow: 5px 10px 18px #888888;
-    border:0;
-    cursor: pointer;
+.card {
+  box-shadow: 5px 10px 18px #888888;
+  border: 0;
+  cursor: pointer;
 }
-.danger-color{
-    background-color:#ff3547!important;
+.danger-color {
+  background-color: #ff3547 !important;
 }
 .badge {
-    color: #fff;
+  color: #fff;
 }
-.w-100{
-    height:500px;
+.w-100 {
+  height: 500px;
 }
-.product_detail_image{
-    border: 1px solid;
+.product_detail_image {
+  border: 1px solid;
 }
-.lead{
-    font-weight: 700 !important;
+.lead {
+  font-weight: 700 !important;
 }
 // snackbar
-.btn{
-    border:none;
-    padding: 10px 15px;
-    border-radius:10px;
-    background: #f77f00;
-    color:white;
-    font-weight:bolder;
+.btn {
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background: #f77f00;
+  color: white;
+  font-weight: bolder;
+}
+#myAlert {
+  visibility: hidden;
+  position: fixed;
+  color: white;
+  border-radius: 10px;
+  top: 0;
+  right: 0;
+  transform: translate(-15px, 15px);
+  background: #d62828;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.myAlert-text-icon {
+  align-items: stretch;
+  box-shadow: 0 1px 1px rgba(7, 7, 7, 0.1);
+  display: flex;
+  max-width: 300px;
+}
+.myAlert-message {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  font-weight: 700;
+  padding: 15px 25px;
+}
+.close {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: 0 0;
+  border: none;
+  color: currentColor;
+  font-family: inherit;
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+}
+#myAlert.show {
+  visibility: visible;
+}
+
+#myAlert.show {
+  animation: show 0.5s forwards;
+}
+
+@keyframes show {
+  0% {
+    transform: translate(-15px, 15px) scale(0);
   }
-  #myAlert{
-    visibility: hidden;
-    position:fixed;
-    color: white;
-    border-radius:10px;
-    top:0;
-    right:0;
-    transform: translate(-15px,15px);
-    background: #d62828;
-    border-radius:10px;
-    overflow:hidden
+  50% {
+    transform: translate(-15px, 15px) scale(1.2);
   }
-  .myAlert-text-icon{
-    align-items: stretch;
-    box-shadow: 0 1px 1px rgba(7, 7, 7, 0.1);
-    display: flex;
-    max-width:300px;
-    
+  70% {
+    transform: translate(-15px, 15px) scale(0.9);
   }
-  .myAlert-message{
-    align-items: center;
-    display: flex;
-    flex-grow: 1;
-    font-weight: 700;
-    padding: 15px 25px;
+  100% {
+    transform: translate(-15px, 15px) scale(1);
   }
-  .close{
-      -moz-appearance: none;
-      -webkit-appearance: none;
-      appearance: none;
-      background: 0 0;
-      border: none;
-      color: currentColor;
-      font-family: inherit;
-      font-size: 1em;
-      margin: 0;
-      padding: 0;
-      align-items: center;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      padding: 0.75rem 1rem;
-     
-  }
-  #myAlert.show {
-    visibility: visible; 
-  }
-  
-  
-  #myAlert.show{
-    animation: show 0.5s forwards;
-  }
-  
-  @keyframes show{
-    0% {
-      transform: translate(-15px,15px) scale(0);
-    }
-    50% {
-      transform: translate(-15px,15px) scale(1.2);
-    }
-    70% {
-      transform: translate(-15px,15px) scale(0.9);
-    }
-    100% {
-      transform: translate(-15px,15px) scale(1);
-    }
-  }
-  
-  #myAlertBar { 
-    height: 2px;
-    background-color: #ddd;
-    color: white;
-  }
-  #myAlertProgress {
-    background-color: #d62828;
-    width:100%
-  }
-  
+}
+
+#myAlertBar {
+  height: 2px;
+  background-color: #ddd;
+  color: white;
+}
+#myAlertProgress {
+  background-color: #d62828;
+  width: 100%;
+}
+.guaven_woos_suggestion {
+  left: 205px;
+  top: 60px;
+  width: 500px;
+  display: none;
+  box-shadow: 1px 1px 1px #c0c0c061, -1px 0 0px #c0c0c0ad;
+  border: none;
+  padding: 0px;
+  z-index: 9999;
+  position: absolute;
+  background: white;
+}
+.guaven_woos_suggestion
+  .guaven_woos_final_results
+  .guaven_woos_suggestion_list {
+  min-height: 60px;
+  border-bottom: 1px dotted silver;
+}
+.guaven_woos_suggestion_list,
+.guaven_woos_suggestion_unlisted li {
+  display: block;
+  overflow: auto;
+  min-height: 50px;
+  margin-bottom: 3px;
+}
+.guaven_woos_img {
+  width: 50px;
+  position: absolute;
+  left: 5px;
+}
+.guaven_woos_titlediv {
+  padding-left: 5px;
+  margin-left: 55px;
+  font-size: 12px;
+}
+.guaven_woos_final_results
+  .guaven_woos_suggestion_list
+  .guaven_woos_titlediv
+  > span {
+  font-weight: bold;
+  font-size: 14px;
+  color: black;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.guaven_woos_final_results
+  .guaven_woos_suggestion_list
+  .guaven_woos_titlediv
+  small
+  span.amount {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ed1c24;
+  text-decoration: none;
+}

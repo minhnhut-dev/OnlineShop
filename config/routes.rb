@@ -26,5 +26,7 @@ Rails.application.routes.draw do
     post '/update_quantity', to: 'carts#update_cart'
     post '/remove_item', to: 'carts#remove_from_cart'
     post '/create_order', to: 'order#create_order'
+    post '/search', to: 'product#seach_keyword'
+
   end
 end
